@@ -1,4 +1,4 @@
-require "spec_helper"
+require_relative "spec_helper"
 
 describe Lita::Handlers::CoronaInfo, lita_handler: true do
     context "when we write hello" do

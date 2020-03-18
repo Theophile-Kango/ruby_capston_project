@@ -20,5 +20,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rack-test"
+  spec.add_development_dependency "httparty"
+  spec.add_development_dependency "nokogiri"
+  spec.add_development_dependency "byebug"
   spec.add_development_dependency "rspec", ">= 3.0.0"
 end
