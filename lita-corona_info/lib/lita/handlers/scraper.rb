@@ -3,6 +3,11 @@ require "httparty"
 require "byebug"
 
 class Scraper
+    attr_reader :sort_list
+
+    def get_sort_list
+        return @sort_list.compact
+    end
     
     def start
         url = "https://www.worldometers.info/coronavirus/"
@@ -18,14 +23,15 @@ class Scraper
 
         diff = details_array.length / list_arr.length 
             
-        sort_list = Array.new(diff)
+        @sort_list = Array.new(diff)
 
-        info(list_arr, details,details_array, sort_list)    
+        info(list_arr, details,details_array, @sort_list)
         
         byebug
 
-        sort_list
     end
+
+    private
 
     def converter(big_arr, my_array, value)
         long = my_array.length
@@ -41,7 +47,6 @@ class Scraper
 
     def info(array, details, details_arr, my_list)
         total = array.length
-
         total.times do |i|
             details.length.times do |j|
                 if j % total == i
