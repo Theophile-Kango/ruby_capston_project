@@ -2,38 +2,53 @@ require "nokogiri"
 require "httparty"
 require "byebug"
 
-def scraper
-    url = "https://www.worldometers.info/coronavirus/"
-    unparsed_page = HTTParty.get(url)
-    parsed_page = Nokogiri::HTML(unparsed_page)
-    mount = parsed_page.css('#maincounter-wrap')
-    countries = parsed_page.css('#main_table_countries')
-    details = parsed_page.css('td').text.to_s.split(" ")
+class Scraper
+    
+    def start
+        url = "https://www.worldometers.info/coronavirus/"
+        unparsed_page = HTTParty.get(url)
+        parsed_page = Nokogiri::HTML(unparsed_page)
+        
+        details = parsed_page.css('td')
 
-    countries.each do |countrie|
-        countrie = {
-            title: countrie.css('th').text
-        }
+        details_array = Array.new(details.length){Hash.new} 
+        
+        list_arr = ['Country','Total cases','new cases','Total deaths','New deaths',
+            'Total recovered','Active Cases','Serious Critical','Total cases/1M pop']
+
+        diff = details_array.length / list_arr.length 
+            
+        sort_list = Array.new(diff)
+
+        info(list_arr, details,details_array, sort_list)    
+        
         byebug
+
+        sort_list
+    end
+
+    def converter(big_arr, my_array, value)
+        long = my_array.length
+        value.length.times do |i|
+            value << [big_arr[long*i],big_arr[(long*i)+1],big_arr[(long*i)+2],
+            big_arr[(long*i)+3],big_arr[(long*i)+4],big_arr[(long*i)+5],
+            big_arr[(long*i)+6],big_arr[(long*i)+7],big_arr[(long*i)+8]
+        ]
+        end
+        value
     end
     
-    mount.each do |cases|
-        cases = {
-            title: cases.css('h1').text,
-            number: cases.css('div.maincounter-number').text
-        }
-        byebug
+
+    def info(array, details, details_arr, my_list)
+        total = array.length
+
+        total.times do |i|
+            details.length.times do |j|
+                if j % total == i
+                    details_arr[j][array[i]] = details[j].text
+                end
+            end
+        end
+        converter(details_arr, array, my_list)
     end
-
 end
-
-scraper
-
-#"mount = #maincounter-wrap"
-#"mount_first = mount.first.text " => Coronavirus cases: 190,929
-#mount_first.css('h1').text => Coronavirus cases:
-#mount_first.css('div.maincounter-number').text => Coronavirus cases:
-#countries = parsed_page.css('#main_table_countries')
-#countries.css('td') => Total cases, new cases, Total deaths, New deaths, 
-#Total recovered, Activities, Serious Critical, Total cases/1M pop
-#countries_name = countries.css('.sorting_1')
