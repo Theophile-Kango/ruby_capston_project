@@ -8,5 +8,5 @@ require "lita/handlers/corona_info"
 
 Lita::Handlers::CoronaInfo.template_root File.expand_path(
   File.join("..", "..", "templates"),
- __FILE__
+  __FILE__
 )
