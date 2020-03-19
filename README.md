@@ -1,10 +1,14 @@
 # RUBY CAPSTONE PROJECT
 
-In this project I built a contry and city bot, a bot that helps you to find informations about a country you asked
+In this project I wanted to build a corona and city bot, a bot that helps you to find informations about a country you asked
 
 ## Built With
 
 - Ruby
+- lita
+- redis
+- nokogiri
+- httparty
 - VSCode, Linters, Rubocop
 
 
@@ -19,7 +23,8 @@ To get a local copy up and running follow these simple example steps.
 ### Setup
 
 - Clone the repository on your local machine
-- cd into the folder, find the enumerable.rb file an open it in code editor
+- cd into the folder, find lita_corona_info folder search for the bin/main.rb file an open it in code editor
+- run it whith main.rb command or ruby main.rb command
 
 ### Install
 
@@ -33,7 +38,8 @@ To get a local copy up and running follow these simple example steps.
 
 - you will find comment lines at the end of the project, just uncomment them
 - run the file using "ruby filename" command
-
+- install lita, nokogiri, httparty  whith gem install lita, nokogiri, httparty command
+- install redis sever
 
 ## Authors
 
