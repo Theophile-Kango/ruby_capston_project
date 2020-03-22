@@ -4,79 +4,63 @@ require "httparty"
 require "byebug"
 
 class Scraper
-  attr_reader :sort_list
-
-  def get_sort_list
-    return @sort_list
-  end
+  attr_reader :sort_list,  :title_header, :details, :title_header_arr, 
+              :details_arr, :details_arr_sort
 
   def start
     url = "https://www.worldometers.info/coronavirus/"
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
-
-    details = parsed_page.css('td')
-
-    details_array = Array.new(details.length) { Hash.new }
-
-    list_arr = ['Country', 'Total cases', 'new cases', 'Total deaths', 'New deaths',
-                'Total recovered', 'Active Cases', 'Serious Critical', 'Total cases/1M pop']
-
-    diff = details_array.length / list_arr.length
-    @sort_list = Array.new(diff)
-    info(list_arr, details, details_array, @sort_list)
+    body = parsed_page.css("tbody")
+    @title_header = parsed_page.css('th')
+    tr = body.css('tr')
+    @details = tr.css('td')
+    @title_header_arr = []
+    @details_arr = []
+    @details_arr_sort = []
   end
 
-  def countries
-    list_countries = []
-    @sort_list.compact.each do |country|
-      list_countries << country[0]["Country"].downcase.strip
+  def principales_titles
+    @title_header.each do |item|
+      @title_header_arr << uppercase(item.text.to_s)
     end
-    return list_countries
+    @title_header_arr.uniq
   end
 
-  def replies
-    @sort_list.compact.each do |element|
-      replies_list = []
-      if element[0]["Country"].downcase.strip == name.downcase.strip
-      replies_list <<
-          "Country : #{element[0]["Country"]},
-          total cases : #{element[1]["Total cases"]},
-          new cases : #{element[2]["new cases"]},
-          total death : #{element[3]["Total deaths"]},
-          new deaths : #{element[4]["New death"]},
-          total recovered : #{element[5]["Total recovered"]},
-          active cases : #{element[6]["Active Cases"]},
-          serious cirtical : #{element[7]["Serious Critical"]},
-          total cases/1M pop : #{element[8]["Total cases/1M pop"]}"
-
-          break
+  def converter
+    arr = []
+    arr << principales_titles
+    arr << countries_details
+    n = 0
+    countries_details_length = countries_details.length/principales_titles.length
+    tile_length = principales_titles.length
+    for i in 0..countries_details_length-1
+      @details_arr_sort << []
+      for j in 1..tile_length
+        @details_arr_sort[i].push(arr[0][j-1])
+        @details_arr_sort[i].push(arr[1][n])
+        n += 1
       end
     end
-    replies_list
+    @details_arr_sort.uniq
   end
-
+  
   private
 
-  def converter(big_arr, my_array, value)
-    long = my_array.length
-    value.length.times do |i|
-      value << [big_arr[long * i], big_arr[(long * i) + 1], big_arr[(long * i) + 2],
-                big_arr[(long * i) + 3], big_arr[(long * i) + 4], big_arr[(long * i) + 5],
-                big_arr[(long * i) + 6], big_arr[(long * i) + 7], big_arr[(long * i) + 8]]
-    end
-    value
+  def uppercase(name)
+      mat = /[[:upper:]]/.match(name[1,name.length-1]).to_s
+      res = name.include?(mat) ? name.insert(name.index(mat), " ") : name
   end
 
-  def info(array, details, details_arr, my_list)
-    total = array.length
-    total.times do |i|
-      details.length.times do |j|
-        if j % total == i
-          details_arr[j][array[i]] = details[j].text
-        end
-      end
+  def countries_details
+    @details.each do |item|
+      @details_arr << item.text.to_s
     end
-    converter(details_arr, array, my_list)
+    @details_arr
   end
+
 end
+
+scraper = Scraper.new
+scraper.start
+p scraper.converter
