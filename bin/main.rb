@@ -23,19 +23,11 @@ class Main
     end
 
     def get_info(name)
-        @scraper.sort_list.compact.each do |element|
-            if element[0]["Country"].downcase.strip.match(name.downcase.strip)
-                puts "\nCountry : #{element[0]["Country"]}\n
-                total cases : #{element[1]["Total cases"]}\n
-                new cases : #{element[2]["new cases"]}\n
-                total death : #{element[3]["Total deaths"]}\n
-                new deaths : #{element[4]["New death"]}\n
-                total recovered : #{element[5]["Total recovered"]}\n
-                active cases : #{element[6]["Active Cases"]}\n
-                serious cirtical : #{element[7]["Serious Critical"]}\n
-                total cases/1M pop : #{element[8]["Total cases/1M pop"]} "
-                break
-            end
+        @scraper.converter.each do |item|  
+            if item[1].to_s.downcase.strip.match(name.downcase.strip) 
+                puts item
+                break       
+            end      
         end
     end
 end
@@ -43,4 +35,3 @@ end
 main = Main.new
 main.scraper.start
 main.give_name
-
