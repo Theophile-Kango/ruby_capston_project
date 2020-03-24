@@ -25,7 +25,7 @@ class Main
     def get_info(name)
         @scraper.converter.each do |item|  
             if item[1].to_s.downcase.strip.match(name.downcase.strip) 
-                puts item
+                    puts item
                 break       
             end      
         end

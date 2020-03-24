@@ -34,7 +34,7 @@ class Scraper
     n = 0
     countries_details_length = countries_details.length/principales_titles.length
     tile_length = principales_titles.length
-    for i in 0..countries_details_length-1
+    for i in 0..countries_details_length/8
       @details_arr_sort << []
       for j in 1..tile_length
         @details_arr_sort[i].push(arr[0][j-1])
@@ -42,9 +42,9 @@ class Scraper
         n += 1
       end
     end
-    @details_arr_sort.uniq
+    @details_arr_sort
   end
-  
+
   private
 
   def uppercase(name)
@@ -60,7 +60,5 @@ class Scraper
   end
 
 end
-
 scraper = Scraper.new
 scraper.start
-p scraper.converter

@@ -1,3 +1,5 @@
 1.1.2'
 /lib/lita/hanlders/.byebug_history
-/lib/lita/handlers/danger.rb
+/lib/lita/handlers/scraper2.rb
+/lib/lita/handlers/test.rb
+/lib/lita/handlers/counter.rb
