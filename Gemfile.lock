@@ -11,8 +11,12 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
     diff-lcs (1.3)
+    eventmachine (1.2.7)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
+    faye-websocket (0.10.9)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -43,6 +47,12 @@ GEM
       lita (>= 4.0)
     lita-ping (1.1.2)
       lita (>= 2.0)
+    lita-slack (1.8.0)
+      eventmachine
+      faraday
+      faye-websocket (>= 0.8.0)
+      lita (>= 4.7.1)
+      multi_json
     method_source (0.9.2)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
@@ -86,6 +96,9 @@ GEM
     thor (1.0.1)
     url_mount (0.2.1)
       rack
+    websocket-driver (0.7.1)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.4)
     xmpp4r (0.5.6)
 
 PLATFORMS
@@ -100,6 +113,7 @@ DEPENDENCIES
   lita-jenkins
   lita-karma
   lita-ping
+  lita-slack
   nokogiri
   pry-byebug
   rack-test

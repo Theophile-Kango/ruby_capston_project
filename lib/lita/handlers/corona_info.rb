@@ -11,16 +11,12 @@ module Lita
       scraper.converter
       
       scraper.converter.each do |item| 
-        route(item[1].to_s.downcase.strip, command: true) do |response|
-          
-          #response.reply("Give me a country name and I will give you back corona info about the country")
-            
-            response.reply(item)
-         # else
-            #response.reply("I don't find the country")
-          #end
+        route(item[1].to_s.downcase.strip, command: true) do |response| 
+          #request = item[1].split(",") 
+          response.matches ? response.reply(item) : response.reply("check your country name")         
         end
       end
+     
       Lita.register_handler(self)
     end
   end

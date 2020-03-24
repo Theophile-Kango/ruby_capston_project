@@ -3,3 +3,4 @@
 /lib/lita/handlers/scraper2.rb
 /lib/lita/handlers/test.rb
 /lib/lita/handlers/counter.rb
+/lib/lita/handlers/lita_config.rb

@@ -56,9 +56,7 @@ class Scraper
     @details.each do |item|
       @details_arr << item.text.to_s
     end
-    @details_arr
+    @details_arr.map { |x| x == "" ? "0" : x }
   end
 
 end
-scraper = Scraper.new
-scraper.start
