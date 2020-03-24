@@ -42,7 +42,7 @@ class Scraper
         n += 1
       end
     end
-    @details_arr_sort
+    @details_arr_sort.uniq
   end
 
   private

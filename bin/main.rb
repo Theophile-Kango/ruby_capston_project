@@ -31,7 +31,3 @@ class Main
         end
     end
 end
-
-main = Main.new
-main.scraper.start
-main.give_name

@@ -21,7 +21,8 @@ Lita.configure do |config|
 
   Lita.configure do |config|
     config.robot.adapter = :slack
-    config.adapters.slack.token = "xoxb-1002959993632-1005432886677-n2R053pTLJijvVohru7u4uXT"
+    config.adapters.slack.token = "xoxb-1002959993632-1005432886677-cNmGtE9kCOjPOSSRzEZOHUSV"
+    config.redis[:host] = "redis"
   end
 
   ## Example: Set options for the chosen adapter.
