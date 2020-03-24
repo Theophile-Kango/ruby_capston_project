@@ -11,10 +11,12 @@ module Lita
       scraper.converter
       
       scraper.converter.each do |item| 
-        route(item[1].matches, command: true) do |response| 
+        route(item[1].to_s.downcase.strip, command: true) do |response| 
           #request = item[1].split(",") 
           #response.matche( item[1].to_s.downcase.strip) ? response.reply(item) : response.reply("check your country name")         
-          response.reply_privately(item)
+          unless item[1].match(item[1].to_s.downcase.strip)
+            response.reply_privately(item)
+          end
         end
       end
      
