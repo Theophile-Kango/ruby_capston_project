@@ -1,5 +1,5 @@
 require_relative '../bin/main'
-require_relative './sort'
+require_relative '../lib/sort'
 require 'telegram_bot'
 
 require 'telegram/bot'
@@ -65,32 +65,6 @@ class App
   end 
 end
 
-  app = App.new
-  app.start
-
-# require 'telegram/bot'
-# token = '1081158876:AAFolT3rEK0wOjsUVcta7a8EJtjPjDPgNlc'
-# Telegram::Bot::Client.run(token) do |bot|
-#   bot.listen do |message|
-#     case message
-#     when Telegram::Bot::Types::CallbackQuery
-#       # Here you can handle your callbacks from inline buttons
-#       ["a","b","c"].each do |element|
-#         if message.data == element
-#           bot.api.send_message(chat_id: message.from.id, text: element)
-#         end
-#       end
-     
-#     when Telegram::Bot::Types::Message
-#       array = ["a","b","c"]
-#       kb = []
-#       array.each do |element|
-#         kb << Telegram::Bot::Types::InlineKeyboardButton.new(text: element, callback_data: element)
-#       end
-#       markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: kb)
-#       bot.api.send_message(chat_id: message.chat.id, text: 'Choose a country', reply_markup: markup)
-#     end
-#   end
-# end
-
+app = App.new
+app.start
    
