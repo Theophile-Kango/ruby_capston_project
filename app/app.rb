@@ -10,7 +10,7 @@ class App
   def initialize
     @sort = Sort.new
     @result = []
-    @token = '1081158876:AAFolT3rEK0wOjsUVcta7a8EJtjPjDPgNlc' 
+    @token = ENV["API_KEY"] 
   end
 
   def start 
