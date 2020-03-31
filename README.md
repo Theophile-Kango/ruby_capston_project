@@ -1,6 +1,6 @@
-# RUBY CAPSTONE PROJECT
+# TELEGRAM BOT FOR COCID-19
 
-In this project I built a contry and city bot, a bot that helps you to find informations about a country you asked
+These days every one want to get information about coronavirus. It's really on top. Every one want to know the evolution of the situation. As it very hard every time to open the browser and look for the website to get informed, I thought it can be helpfull to build a bot that can help the user to get corona information.
 
 ## Built With
 
