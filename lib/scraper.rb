@@ -1,7 +1,6 @@
 # rubocop:disable all
 require "nokogiri"
 require "httparty"
-require "byebug"
 
 class Scraper
   attr_reader :sort_list,  :title_header, :details, :title_header_arr, 
@@ -32,7 +31,7 @@ class Scraper
     arr << principales_titles
     arr << countries_details
     n = 0
-    countries_details_length = 2 * countries_details.length+principales_titles.length/principales_titles.length
+    countries_details_length = countries_details.length/principales_titles.length/8
     tile_length = principales_titles.length
     for i in 0..countries_details_length
       @details_arr_sort << []
@@ -58,6 +57,3 @@ class Scraper
       res = name.include?(mat) ? name.insert(name.index(mat), " ") : name
   end
 end
-# scraper = Scraper.new
-# scraper.start
-# scraper.converter
