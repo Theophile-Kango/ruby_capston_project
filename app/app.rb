@@ -68,6 +68,4 @@ end
 app = App.new
 app.start
 
-
-
    
