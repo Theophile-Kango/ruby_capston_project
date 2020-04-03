@@ -37,7 +37,7 @@ visite this site [telegram](https://desktop.telegram.org)
 - After installing the app in your divice, in the search bar type @covidis_info_bot and click on the bot named covid-19
 - Click on the start button and follow the instractions of the bot.
 
-Check this video for more [details](https://youtu.be/-6YBPLeCt2w) 
+Check this video for more [details](https://youtu.be/q4V9cXcDkII) 
 
 ### Console mode
 
