@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'telegram-bot-ruby'
+gem 'nokogiri'
+gem 'httparty'
+gem 'rspec', '3.5'
+gem 'capybara'
