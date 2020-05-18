@@ -1,21 +1,27 @@
-require_relative './scraper'
+require_relative './connect'
 require_relative '../bin/main'
+
 class Sort
-  attr_reader :list, :scraper, :tot_countries, :tot_details, :letter
+  attr_reader :list, :con, :tot_countries, :tot_details, :letter
 
   def initialize
     @tot_details = []
     @tot_countries = []
     @letter = ''
-    @scraper = Scraper.new
+    @con = Connect.new
   end
 
   def countries_sort(charac)
     @letter = charac
-    @scraper.start
-    scraper.converter.each do |element|
-      @tot_countries << element[1].to_s
+
+    @con.countries.each do |element|
+      @tot_countries << element["Country"].to_s
     end
-    @tot_countries.select { |element| element[0] == @letter }.uniq
+
+    @tot_countries.select { |element| element[0] == @letter.upcase }.uniq
   end
+
 end
+
+sort = Sort.new
+p sort.countries_sort("c")
