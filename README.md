@@ -2,7 +2,7 @@
 
 ## Introduction
 
-These days every one want to get information about coronavirus. It's really on top. Every one want to know the evolution of the situation. As it very hard every time to open the browser and look for the website to get informed, I thought it can be helpfull to build a bot that can help the user to get corona information.
+These days everyone wants to get information about coronavirus. It's really on top. Everyone wants to know the evolution of the situation. As it very hard every time to open the browser and look for the website to get informed, I thought it can be helpful to build a bot that can help the user to get corona information.
 
 ## Prerequisites
 
